@@ -36,7 +36,7 @@ async function main() {
 
   const games = [];
 
-  while (games.length < 100) {
+  while (games.length < 10) {
     const bigWord = rand(exactSevens);
     console.log('Trying', bigWord);
     const bigWordSorted = sortWord(bigWord);
@@ -58,12 +58,13 @@ async function main() {
         const words = spellable.filter(word => word.includes(letter));
         const numMaxWords = words.filter(word => sortWord(word).length === FULL_LENGTH).length;
         if (numMaxWords === 1 && words.length > 15 && words.length < 30) {
-          return { letter, otherLetters, words };
+          return { letter, otherLetters, bigWord, words };
         }
         return null;
       }, null);
 
     if (game) {
+      console.log('Added', bigWord, game.letter, games.length);
       games.push(game);
     }
   }

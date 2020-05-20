@@ -1,0 +1,32 @@
+{
+  "letter": "A",
+  "otherLetters": [
+    "B",
+    "D",
+    "E",
+    "G",
+    "I",
+    "P"
+  ],
+  "words": [
+    "ABBA",
+    "ABBED",
+    "ABED",
+    "BAAED",
+    "BABA",
+    "BADE",
+    "BADGE",
+    "BADGED",
+    "BAGGED",
+    "BAGPIPED",
+    "BEAD",
+    "BEADED",
+    "BEDAD",
+    "BEGAD",
+    "DABBA",
+    "DABBED",
+    "DEBAG",
+    "DEBAGGED",
+    "GABBED"
+  ]
+}

@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Spelling Bee</title>
-  </head>
-  <body>
-    <h1>This is the spelling bee app</h1>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Spelling Bee</title>
+</head>
+
+<body>
+  <h1>This is the spelling bee app</h1>
+  <div id="root"></div>
+  <div id="spellingArea"></div>
+  <ul id="foundWordsUL"></ul>
+  <script src="abra.js"></script>
+  <script src="games.js"></script>
+  <script type="text/javascript">
+    const today = new Date()
+    const firstDay = new Date('2020-05-20T00:00:00.000Z')
+    const daysSince = Math.floor((today - firstDay) / (24 * 60 * 60 *
+      1000))
+    const game = window.games[daysSince % window.games.length]
+    const otherButtons = game.otherLetters.map(l => abra.button({
+      className: 'letter other-letter',
+      onclick: () => selectLetter(l),
+    }, l))
+    const specialButton = abra.button({
+      className: 'letter special-letter',
+      onclick: () => selectLetter(game.letter),
+    }, game.letter)
+    const allButtons = abra.li({}, specialButton, ...otherButtons)
+    root.appendChild(allButtons)
+
+    let selectedLetters = '';
+
+    function selectLetter(letter) {
+      selectedLetters = selectedLetters + letter;
+      if (game.words.includes(selectedLetters)) {
+        foundWords.push(selectedLetters);
+        clear();
+      }
+      render()
+    }
+
+    function clear() {
+      selectedLetters = ''
+      render()
+    }
+
+    function render() {
+      spellingArea.innerHTML = selectedLetters
+      foundWordsUL.innerHTML = foundWords.map(foundWord)
+    }
+  </script>
+</body>
+
 </html>

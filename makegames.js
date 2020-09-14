@@ -5,6 +5,8 @@ const { rand, uniq } = require('./array');
 const MIN_LENGTH = 4;
 const FULL_LENGTH = 7;
 
+const numGames = Number(process.argv[2]) || 10;
+
 function sortWord(word) {
   return uniq(Array.from(word).sort()).join('');
 }
@@ -36,7 +38,7 @@ async function main() {
 
   const games = [];
 
-  while (games.length < 10) {
+  while (games.length < numGames) {
     const bigWord = rand(exactSevens);
     console.log('Trying', bigWord);
     const bigWordSorted = sortWord(bigWord);
